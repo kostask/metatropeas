@@ -13,7 +13,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mensShoesSizeTextField: UITextField!
     @IBOutlet weak var mensConvertedShoesSizeLabel: UILabel!
-
+    @IBOutlet weak var womensShoeSizeTextField: UITextField!
+    @IBOutlet weak var womensConvertedShoeSizeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -27,28 +29,34 @@ class ViewController: UIViewController {
     @IBAction func convertButtonPressed(sender: AnyObject) {
         
        let sizeFromTextField = mensShoesSizeTextField.text
+        //Check if user provided an empty string
         if (sizeFromTextField == "") {
             mensShoesSizeTextField.placeholder = "No empty spaces allowed!"
             return}
-//        let numberFromTextField = sizefromTextField.toInt()
-//        var integerFromTextField = numberFromTextField!
-        
+     
         let integerFromTextField = sizeFromTextField.toInt()!
-        
-
         
         let conversionConstant = 30
         mensConvertedShoesSizeLabel.hidden = false
         mensConvertedShoesSizeLabel.text = "\(integerFromTextField + conversionConstant)" + " in European Shoe size!"
-        
-//        integerFromTextField += conversionConstant
-//        mensConvertedShoesSizeLabel.hidden = false
-//        let stringWithUpdatedShowSize = "\(integerFromTextField)"
-//        mensConvertedShoesSizeLabel.text = stringWithUpdatedShowSize
         mensShoesSizeTextField.text = ""
         mensShoesSizeTextField.placeholder = "Enter US Shoe Size Here"
         mensShoesSizeTextField.becomeFirstResponder()
     }
 
+    @IBAction func convertWomensShoeSizeButtonPressed(sender: AnyObject) {
+        
+        let sizeFromTextField = Double((womensShoeSizeTextField.text as NSString).doubleValue)
+        
+        let conversionConstant = 30.5
+        womensConvertedShoeSizeLabel.hidden = false
+        womensConvertedShoeSizeLabel.text = "\(sizeFromTextField + conversionConstant) in European Shoe size"
+        womensShoeSizeTextField.text = ""
+        womensShoeSizeTextField.placeholder = "Enter US Shoe Size Here"
+        womensShoeSizeTextField.becomeFirstResponder()
+
+    }
+    
+    
 }
 
